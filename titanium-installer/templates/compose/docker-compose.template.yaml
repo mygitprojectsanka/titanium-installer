@@ -1,0 +1,47 @@
+# titanium-installer/templates/compose/docker-compose.template.yaml
+# Template for Docker-based services in LXC containers
+
+version: '3.8'
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+services:
+  # Service template - replace SERVICE_NAME
+  SERVICE_NAME:
+    image: IMAGE:TAG
+    container_name: CONTAINER_NAME
+    restart: unless-stopped
+    networks:
+      - internal
+    ports:
+      - "PORT:PORT"
+    volumes:
+      - ./data:/data
+      - ./config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:PORT"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M

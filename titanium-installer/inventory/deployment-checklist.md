@@ -1,0 +1,11 @@
+# Deployment Checklist
+- [ ] Host setup completed
+- [ ] Storage verified
+- [ ] Network configured
+- [ ] DNS configured
+- [ ] Reverse proxy configured
+- [ ] Monitoring online
+- [ ] Backups configured
+- [ ] Core services online
+- [ ] Media services online
+- [ ] AI services online

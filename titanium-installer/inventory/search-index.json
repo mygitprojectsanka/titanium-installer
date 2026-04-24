@@ -1,0 +1,8 @@
+{
+  "services": {
+    "pihole": {"category": "dns", "dependencies": []},
+    "npm": {"category": "proxy", "dependencies": ["pihole"]},
+    "jellyfin": {"category": "media", "dependencies": ["npm"]},
+    "ollama": {"category": "ai", "dependencies": []}
+  }
+}
